@@ -41,7 +41,7 @@ export default {
   width: 580px;
   height: 100px;
   overflow: hidden;
-
+  
   &-content {
     display: block;
     width: 100%;
@@ -58,11 +58,11 @@ export default {
     line-height: 17px;
     -webkit-appearance: none;
   }
-
+  
   &-button {
     text-align: right;
   }
-
+  
   &-button-submit {
     display: inline-block;
     outline: none;

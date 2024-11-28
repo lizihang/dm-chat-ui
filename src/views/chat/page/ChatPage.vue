@@ -173,7 +173,7 @@ export default {
             content: '这是一条测试消息，这是一条测试消息，这是一条测试消息，这是一条测试消息，这是一条测试消息，这是一条测试消息，这是一条测试消息，这是一条测试消息，这是一条测试消息，这是一条测试消息',
           }
         ],
-        dm2 : [
+        dm2: [
           {
             // 是否为自己发送的消息
             mine: true,
@@ -217,7 +217,12 @@ export default {
   methods: {
     onItemListClick(username) {
       console.log("chat-page:子组件点击的username:", username)
-      this.msgDataList = this.msgDataMap[username]
+      let dataList = this.msgDataMap[username]
+      if (dataList) {
+        this.msgDataList = this.msgDataMap[username]
+      } else {
+        this.msgDataList = []
+      }
       this.toName = username;
     },
     onItemListClose(username) {
@@ -230,9 +235,9 @@ export default {
         return;
       }
       let msgItem = {
-        fromName: this.username,
-        toName: this.toName,
-        date: new Date(),
+        sendName: this.username,
+        receiveName: this.toName,
+        sendTime: new Date(),
         content: message
       }
       this.ws.send(JSON.stringify(msgItem))
@@ -333,7 +338,7 @@ export default {
     // 2.初始化数据
     this.initData();
     // 3.初始化websocket
-    this.ws = useWebsocket(this.handleMessage, localStorage.getItem("username"));
+    this.ws = useWebsocket(this.handleMessage, this.username);
   }
 }
 </script>

@@ -1,5 +1,5 @@
 function useWebsocket(handleMessage, username) {
-    const ws = new WebSocket('ws://localhost:18080/chat/' + username);
+    const ws = new WebSocket('ws://localhost:18080/websocket/' + username);
 
     const init = () => {
         ws.addEventListener('open', handleOpen, false);
